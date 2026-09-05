@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan Pernikahan — The Wedding</title>
+<title>Undangan Besuare — Dion &amp; Elsha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -50,9 +50,6 @@ a{color:inherit}
   background:linear-gradient(90deg,var(--accent),var(--gold));box-shadow:0 0 12px rgba(0,0,0,.15)}
 
 /* ============ AMBIENT / SECTION LIVELINESS ============ */
-/* Lapisan gradasi warna murni CSS — SELALU tampil walau tidak ada foto sama
-   sekali atau foto gagal dimuat. Ini yang membuat halaman terasa hidup
-   tanpa bergantung pada tautan foto eksternal. */
 .sec,.closing{
   background-image:
     radial-gradient(60% 55% at 8% 6%, color-mix(in srgb,var(--gold) 16%,transparent), transparent 60%),
@@ -65,24 +62,17 @@ a{color:inherit}
     radial-gradient(60% 55% at 8% 6%, color-mix(in srgb,var(--gold) 20%,transparent), transparent 60%),
     radial-gradient(55% 60% at 96% 94%, color-mix(in srgb,var(--accent) 14%,transparent), transparent 60%);
 }
-/* Bingkai sudut dekoratif — SVG, tidak butuh foto, selalu tampil */
 .corner-orn{position:fixed;width:150px;height:150px;color:var(--gold);opacity:.35;z-index:1;pointer-events:none}
 .corner-orn.tl{top:14px;left:14px}
 .corner-orn.br{bottom:14px;right:14px;transform:rotate(180deg)}
 @media(max-width:640px){.corner-orn{width:90px;height:90px}}
 
-/* Lapisan foto tipis di belakang seluruh halaman (opsional, memakai foto sampul).
-   Kalau tautan foto gagal dimuat, gradasi CSS di atas tetap membuat halaman hidup. */
 body::before{
   content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:var(--ambient-img,none);
   background-size:cover;background-position:center;
   opacity:.16;filter:saturate(.6) blur(.5px);
 }
-/* Lapisan foto per-section untuk beberapa bagian, dengan overlay warna tema
-   yang jauh lebih tipis supaya foto benar-benar terlihat — dipasang lewat
-   variabel --photo di style inline. Judul di atasnya diberi panel kaca
-   (lihat .sec-photo .sec-head) supaya tetap terbaca. */
 .sec-photo{position:relative;isolation:isolate}
 .sec-photo::before{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -307,6 +297,12 @@ textarea{resize:vertical;min-height:92px}
 .gift-card .num{font-family:var(--disp);font-size:26px;letter-spacing:.03em;color:var(--ink);margin-bottom:4px}
 .gift-card .holder{font-size:12.5px;color:var(--muted);margin-bottom:18px;text-transform:uppercase;letter-spacing:.12em}
 
+/* turut mengundang */
+.coinv{max-width:640px;margin:0 auto;columns:2;column-gap:34px}
+.coinv-item{break-inside:avoid;color:var(--muted);font-size:14.5px;line-height:2.1}
+.coinv-item b{color:var(--ink);font-weight:600}
+@media(max-width:560px){.coinv{columns:1}}
+
 /* closing */
 .closing{text-align:center;padding:110px 0 90px;background:var(--bg-soft);position:relative;overflow:hidden}
 .closing .glow{position:absolute;width:620px;height:620px;left:50%;top:40%;transform:translate(-50%,-50%);
@@ -370,8 +366,8 @@ footer{padding:26px;text-align:center;font-size:11px;color:var(--muted);letter-s
       <circle cx="38" cy="52" r="15"/><circle cx="62" cy="52" r="15"/>
       <path d="M50 20 L50 33"/>
     </svg>
-    <div class="eyebrow">The Wedding Of</div>
-    <h1 id="openNames">Arka &amp; Nisa</h1>
+    <div class="eyebrow">Undangan Besuare</div>
+    <h1 id="openNames">Dion &amp; Elsha</h1>
     <div class="to-line">Kepada Yth. Bapak/Ibu/Saudara/i</div>
     <input id="guestInput" type="text" placeholder="Tulis nama Anda" autocomplete="off">
     <div class="to-line" style="margin-top:10px;font-size:12px">di tempat</div>
@@ -424,22 +420,21 @@ footer{padding:26px;text-align:center;font-size:11px;color:var(--muted);letter-s
    ==================================================================== */
 const U = s => 'https://images.unsplash.com/photo-'+s+'?auto=format&fit=crop&w=1100&q=80';
 const DEFAULT = {
-  groom:{nick:'Arka',full:'Arkana Pratama Wibowo',father:'Bapak Hendra Wijaya Kusuma',mother:'Ibu Sri Handayani',ig:'@arkana.p',photo:U('1522673607200-164d1b6ce486')},
-  bride:{nick:'Nisa',full:'Nisa Larasati Ramadhani',father:'Bapak Bagus Setiawan',mother:'Ibu Ratna Dewi Lestari',ig:'@nisa.laras',photo:U('1519741497674-611481863552')},
-  cover:{title:'The Wedding Of',sub:'Sabtu, 14 Juni 2025',image:U('1519225421980-715cb0215aed')},
+  groom:{nick:'Dion',full:'Dion Taufiq Aditya',father:'Bapak Andi Hartawi',mother:"Ibu Puspriani/Pok'ani (Almh.)",ig:'',photo:U('1522673607200-164d1b6ce486')},
+  bride:{nick:'Elsha',full:'Elsha Tri Handayani, S.Pd',father:'Bapak Rudi Mulyanto',mother:'Ibu Rondiah',ig:'',photo:U('1519741497674-611481863552')},
+  cover:{title:'Undangan Besuare',sub:'Minggu, 08 November 2026',image:U('1519225421980-715cb0215aed')},
   event:{
-    akadDate:'2025-06-14',akadTime:'08:00',akadVenue:'Masjid Agung Al-Ikhlas',
-    recDate:'2025-06-14',recTime:'11:00',recVenue:'Grand Ballroom, The Alana Hotel',
-    address:'Jl. Palagan Tentara Pelajar No. 7, Sleman, Daerah Istimewa Yogyakarta',
-    maps:'https://maps.google.com/?q=The+Alana+Hotel+Yogyakarta',live:''
+    akadDate:'2026-11-07',akadTime:'08:00',akadVenue:'Hari Bemasak — Kediaman Mempelai',
+    recDate:'2026-11-08',recTime:'08:00',recVenue:'Hari Jadi / Resepsi Pernikahan',
+    address:'Desa Pagar Agung, Rt 005 Rw 002, Kel. Tanjung Agung, Kec. Pagar Alam Selatan, Kota Pagar Alam',
+    maps:'',live:''
   },
   quote:{text:'Dan di antara tanda-tanda kekuasaan-Nya diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri, supaya kamu mendapat ketenangan hati dan dijadikan-Nya kasih sayang di antara kamu.',src:'QS. Ar-Rum: 21'},
-  story:[
-    {date:'12 Oktober 2019',title:'Pertemuan Pertama',text:'Berawal dari sebuah acara alumni, obrolan sederhana berubah menjadi kebiasaan saling bercerita setiap hari.'},
-    {date:'05 Mei 2021',title:'Menjalin Komitmen',text:'Setelah melewati banyak perbedaan, kami memutuskan untuk melangkah bersama dengan niat yang sama.'},
-    {date:'18 Februari 2025',title:'Lamaran',text:'Di hadapan kedua keluarga, niat baik kami diikrarkan. Alhamdulillah, doa pun mulai diijabah.'},
-    {date:'14 Juni 2025',title:'Hari Bahagia',text:'Menyatukan janji dalam ikatan pernikahan, memulai babak baru sebagai suami istri.'}
+  coInvite:[
+    'Bapak Rustani (Tanit)','Bapak Zulpandri (Panjul)','Bapak Yusianda (Yusi)',
+    'Ibu Hayani (Yani)','Bapak Wilindra (Wilin)','Bapak Lukman Hakim'
   ],
+  story:[],
   gallery:[U('1511285560929-80b456fea0bc'),U('1465495976277-4387d4b0b4c6'),U('1520854221256-17451cc331bf'),
     U('1470217957101-da7150b9b681'),U('1460978812857-470ed1c77af0'),U('1519671482749-fd09be7ccebf'),
     U('1583939003579-730e3918a45a'),U('1511795409834-ef04bbd61622'),U('1525328437458-0c4d4db7cab4')],
@@ -452,16 +447,16 @@ const DEFAULT = {
     gift:U('1460978812857-470ed1c77af0'),
     closing:U('1519225421980-715cb0215aed')
   },
-  hashtag:'#ArkaDanNisa',
-  closing:{text:'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.'},
+  hashtag:'#DionElshaBesuare',
+  closing:{text:"Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i, kami sekeluarga mengucapkan terima kasih. Wassalamu'alaikum Warahmatullahi Wabarakatuh."},
   gift:{
-    note:'Doa restu Bapak/Ibu/Saudara/i merupakan karunia yang sangat berarti bagi kami. Namun, apabila berkenan memberikan tanda kasih, dapat disalurkan melalui:',
-    bankName:'Bank Central Asia (BCA)',
-    bankAccount:'1234567890',
-    bankHolder:'Arkana Pratama Wibowo',
-    ewalletName:'GoPay',
-    ewalletNumber:'0812-3456-7890',
-    ewalletHolder:'Nisa Larasati Ramadhani',
+    note:'',
+    bankName:'',
+    bankAccount:'',
+    bankHolder:'',
+    ewalletName:'',
+    ewalletNumber:'',
+    ewalletHolder:'',
     address:''
   },
   theme:'classic',themeAccent:'',themeGold:'',
@@ -590,7 +585,7 @@ function renderInvitation(){
     <div class="hero-inner">
       <div class="eyebrow">${esc(d.cover.title)}</div>
       <h1 class="hero-names"><span id="n1">${esc(d.groom.nick)}</span><em class="amp">&amp;</em><span id="n2">${esc(d.bride.nick)}</span></h1>
-      <div class="hero-date">${esc(fmtDay(d.event.akadDate))} • ${esc(d.cover.sub||fmtDate(d.event.akadDate))}</div>
+      <div class="hero-date">${esc(fmtDay(d.event.recDate))} • ${esc(d.cover.sub||fmtDate(d.event.recDate))}</div>
       <svg class="hero-orn" viewBox="0 0 320 24" fill="none" stroke="currentColor" stroke-width="1">
         <path d="M2 12H120"/><path d="M200 12H318"/>
         <path d="M160 4c-9 0-16 4-16 8s7 8 16 8 16-4 16-8-7-8-16-8z"/>
@@ -603,7 +598,7 @@ function renderInvitation(){
   <section class="sec">
     <div class="wrap quote" data-reveal>
       <div class="eyebrow" style="margin-bottom:22px">Bismillahirrahmanirrahim</div>
-      <blockquote>“${esc(d.quote.text)}”</blockquote>
+      <blockquote>"${esc(d.quote.text)}"</blockquote>
       <div class="src">${esc(d.quote.src)}</div>
     </div>
   </section>
@@ -661,30 +656,30 @@ function renderInvitation(){
       <div class="events">
         <div class="ecard" data-reveal>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="19" cy="29" r="11"/><circle cx="29" cy="29" r="11"/><path d="M24 8l3 6h-6l3-6z"/></svg>
-          <h4>Akad Nikah</h4>
+          <h4>Hari Bemasak</h4>
           <div class="row"><b>${esc(fmtDay(d.event.akadDate))}, ${esc(fmtDate(d.event.akadDate))}</b>
-          Pukul ${esc(d.event.akadTime)} WIB<br>${esc(d.event.akadVenue)}</div>
+          Pukul ${esc(d.event.akadTime)} WIB s/d selesai<br>${esc(d.event.akadVenue)}</div>
           <button class="btn ghost small" onclick="addToCal('akad')">Ingatkan Saya</button>
         </div>
         <div class="ecard" data-reveal style="--d:.12s">
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 40V16l16-8 16 8v24"/><path d="M18 40V26h12v14"/><path d="M4 40h40"/></svg>
-          <h4>Resepsi</h4>
+          <h4>Hari Jadi / Resepsi</h4>
           <div class="row"><b>${esc(fmtDay(d.event.recDate))}, ${esc(fmtDate(d.event.recDate))}</b>
-          Pukul ${esc(d.event.recTime)} WIB<br>${esc(d.event.recVenue)}</div>
+          Pukul ${esc(d.event.recTime)} WIB s/d selesai<br>${esc(d.event.recVenue)}</div>
           <button class="btn ghost small" onclick="addToCal('rec')">Ingatkan Saya</button>
         </div>
         <div class="ecard" data-reveal style="--d:.24s">
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M24 42s14-12 14-22a14 14 0 1 0-28 0c0 10 14 22 14 22z"/><circle cx="24" cy="20" r="5"/></svg>
           <h4>Lokasi</h4>
           <div class="row">${esc(d.event.address)}</div>
-          <a class="btn ghost small" href="${esc(d.event.maps||'#')}" target="_blank" rel="noopener">Buka Peta</a>
+          ${d.event.maps?`<a class="btn ghost small" href="${esc(d.event.maps)}" target="_blank" rel="noopener">Buka Peta</a>`:''}
           ${hasLive?`<div style="margin-top:14px"><a class="btn small" href="${esc(d.event.live)}" target="_blank" rel="noopener">Live Streaming</a></div>`:''}
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec sec-photo" style="--photo:url('${esc(at.timeline||'')}')">
+  ${d.story.length?`<section class="sec sec-photo" style="--photo:url('${esc(at.timeline||'')}')">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <div class="eyebrow">Perjalanan Kami</div>
@@ -697,7 +692,20 @@ function renderInvitation(){
           <div class="date">${esc(s.date)}</div><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p></div>`).join('')}
       </div>
     </div>
-  </section>
+  </section>`:''}
+
+  ${(d.coInvite&&d.coInvite.length)?`<section class="sec">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div class="eyebrow">Bersama Keluarga Besar</div>
+        <h2 class="sec-title">Turut Mengundang</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="coinv" data-reveal>
+        ${d.coInvite.map((n,i)=>`<div class="coinv-item">${i+1}. <b>${esc(n)}</b></div>`).join('')}
+      </div>
+    </div>
+  </section>`:''}
 
   <section class="sec alt">
     <div class="wrap">
@@ -746,12 +754,12 @@ function renderInvitation(){
       <div class="stats" data-reveal>
         <div class="stat"><b data-count="${getL(rKey()).reduce((a,b)=>a+(+b.count||0),0)}">0</b><span>Tamu Akan Hadir</span></div>
         <div class="stat"><b data-count="${getL(wKey()).length}">0</b><span>Ucapan &amp; Doa</span></div>
-        <div class="stat"><b data-count="${d.story.length}">0</b><span>Momen Terlupakan</span></div>
+        <div class="stat"><b data-count="${(d.coInvite&&d.coInvite.length)||0}">0</b><span>Keluarga Turut Mengundang</span></div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt sec-photo" style="--photo:url('${esc(at.gift||'')}')">
+  ${(d.gift.bankAccount||d.gift.ewalletNumber)?`<section class="sec alt sec-photo" style="--photo:url('${esc(at.gift||'')}')">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <div class="eyebrow">Tanpa Mengurangi Rasa Hormat</div>
@@ -760,22 +768,22 @@ function renderInvitation(){
         <p>${esc(d.gift.note)}</p>
       </div>
       <div class="agrid" style="max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
-        <div class="gift-card" data-reveal="left">
+        ${d.gift.bankAccount?`<div class="gift-card" data-reveal="left">
           <h4>${esc(d.gift.bankName)}</h4>
           <div class="num">${esc(d.gift.bankAccount)}</div>
           <div class="holder">a.n. ${esc(d.gift.bankHolder)}</div>
           <button class="btn ghost small" onclick="copy('${esc(d.gift.bankAccount).replace(/'/g,"\\'")}','Nomor rekening tersalin.')">Salin Nomor</button>
-        </div>
-        <div class="gift-card" data-reveal="right">
+        </div>`:''}
+        ${d.gift.ewalletNumber?`<div class="gift-card" data-reveal="right">
           <h4>${esc(d.gift.ewalletName)}</h4>
           <div class="num">${esc(d.gift.ewalletNumber)}</div>
           <div class="holder">a.n. ${esc(d.gift.ewalletHolder)}</div>
           <button class="btn ghost small" onclick="copy('${esc(d.gift.ewalletNumber).replace(/'/g,"\\'")}','Nomor tersalin.')">Salin Nomor</button>
-        </div>
+        </div>`:''}
       </div>
       ${d.gift.address&&d.gift.address.trim()?`<p style="text-align:center;color:var(--muted);margin-top:34px;font-size:13.5px;line-height:1.8">Atau kirim kado ke alamat berikut:<br>${esc(d.gift.address)}</p>`:''}
     </div>
-  </section>
+  </section>`:''}
 
   <section class="closing sec-photo" style="--photo:url('${esc(at.closing||'')}')">
     <div class="glow"></div>
@@ -859,7 +867,7 @@ document.addEventListener('mousemove',e=>{
 let cdTimer;
 function startCountdown(){
   clearInterval(cdTimer);
-  const tgt=target(state.data.event.akadDate,state.data.event.akadTime);
+  const tgt=target(state.data.event.recDate,state.data.event.recTime);
   const set=(id,v)=>{const el=document.getElementById(id);if(!el)return;if(el.textContent!==v){el.textContent=v;el.classList.add('tick');setTimeout(()=>el.classList.remove('tick'),420)}};
   function tick(){
     const diff=tgt-new Date();
